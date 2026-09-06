@@ -6,6 +6,7 @@ A bilingual interactive pixel world for books, letters, music, experiments, and 
 
 - `dist/` — the complete static website, including JavaScript, styles, and artwork. No build step or API key is required.
 - `dist/world-art.js` — day/night artwork paths and building coordinates.
+- `dist/art/farmer-head-*.png` — generated close-up repairs for the farmer. `node scripts/build-world-art.mjs` assembles the SVG panoramas used by the map, room portraits, and gallery; the base PNG artwork stays intact.
 - `dist/music-room.js`, `dist/music-input.js`, and `dist/soundtrack.js` — three-octave composer, keyboard recording, Shuffle, saved compositions, and WAV export.
 - `dist/songs.js` — verified public songs from [haru de’goat on Suno](https://suno.com/@harudegoat).
 - `dist/books.js` — the Reading corner's book links.

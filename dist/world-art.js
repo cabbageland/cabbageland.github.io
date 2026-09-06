@@ -1,6 +1,6 @@
 export const ART_WIDTH=1983,ART_HEIGHT=793;
-export const DAY_ART='./cabbageland-wide-day.png';
-export const NIGHT_ART='./cabbageland-wide-night.png';
+export const DAY_ART='./cabbageland-wide-day.svg';
+export const NIGHT_ART='./cabbageland-wide-night.svg';
 
 // Coordinates are measured in the expanded artwork, shared by day and night.
 export const BUILDINGS={
