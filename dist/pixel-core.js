@@ -1,0 +1,6 @@
+export const NOTE_NAMES=['C','D','E','G','A'];
+export const FREQUENCIES=[261.63,293.66,329.63,392,440];
+export const PALETTE=['#203b24','#508c28','#9cc53b','#d8e67a','#1d7ab1','#66c7e3','#b97b3c','#f3d78d','#faf1d3','#b45742'];
+export function nextGeneration(cells,width,height){const next=new Uint8Array(cells.length);for(let y=0;y<height;y++)for(let x=0;x<width;x++){let n=0;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){if(!dx&&!dy)continue;const xx=x+dx,yy=y+dy;if(xx>=0&&xx<width&&yy>=0&&yy<height)n+=cells[yy*width+xx];}next[y*width+x]=n===3||(cells[y*width+x]&&n===2)?1:0;}return next;}
+export function seedPattern(name,width,height){const grid=new Uint8Array(width*height),put=(x,y)=>{if(x>=0&&x<width&&y>=0&&y<height)grid[y*width+x]=1;},cx=Math.floor(width/2),cy=Math.floor(height/2);if(name==='glider'){for(const [x,y] of [[1,0],[2,1],[0,2],[1,2],[2,2]])put(cx-3+x,cy-3+y);}else if(name==='oscillator'){for(let x=-1;x<=1;x++)put(cx+x,cy);for(let x=-1;x<=1;x++)put(cx+x-6,cy-4);for(let y=-1;y<=1;y++)put(cx+6,cy+y+4);}else{for(let i=0;i<grid.length;i++)grid[i]=Math.random()<.22?1:0;}return grid;}
+export function melodyPreset(){const grid=Array.from({length:5},()=>Array(16).fill(false)),melody=[0,2,3,4,3,2,1,2,0,2,4,3,2,1,0,3];melody.forEach((n,i)=>grid[4-n][i]=true);return grid;}
