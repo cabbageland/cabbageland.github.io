@@ -1,4 +1,4 @@
-import { ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART } from './world-art.js';
+import { ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART } from './world-art.js?v=clean-signs-2';
 import { setText, setAttributeText, localize } from './i18n.js';
 import { PALETTE,nextGeneration,seedPattern } from './pixel-core.js';
 import { BOOKS } from './books.js';

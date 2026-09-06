@@ -1,9 +1,9 @@
-import { ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART, BUILDINGS } from './world-art.js';
+import { ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART, BUILDINGS } from './world-art.js?v=clean-signs-2';
 import { constrainView, fitView, zoomView, resizeView } from './map-camera.js';
 import { createStreamSound } from './stream-audio.js';
 import { scheduleTone } from './soundtrack.js';
 import { t, setText, setAttributeText, localize, initLanguage } from './i18n.js';
-import { createRooms } from './pixel-rooms.js';
+import { createRooms } from './pixel-rooms.js?v=clean-signs-2';
 const stage=document.getElementById('map-stage'),viewport=document.getElementById('map-viewport'),mapImage=document.getElementById('map-image');
 const artworkStyle=document.documentElement.style;
 artworkStyle.setProperty('--art-width',ART_WIDTH+'px');

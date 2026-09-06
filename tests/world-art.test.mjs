@@ -15,17 +15,19 @@ test('higher-resolution artwork preserves the existing map coordinates',()=>{
 });
 
 for(const [mode,source] of [['day',DAY_ART],['night',NIGHT_ART]]){
- test(`${mode} panorama embeds 2x artwork with an exact vector code symbol`,async()=>{
-  const svg=await readFile(new URL(`../dist/${source}`,import.meta.url),'utf8');
-  const panorama=await readFile(new URL(`../dist/art/panorama-${mode}-2x.webp`,import.meta.url));
+ test(`${mode} uses a versioned lossless raster with both repairs baked in`,async()=>{
+  const svg=await readFile(new URL(`../dist/cabbageland-wide-${mode}.svg`,import.meta.url),'utf8');
+  const panorama=await readFile(new URL(`../dist/${source}`,import.meta.url));
+  assert.equal(source,`./art/panorama-${mode}-clean-v2.webp`);
   assert.equal(panorama.toString('ascii',0,4),'RIFF');
-  assert.equal(panorama.toString('ascii',8,16),'WEBPVP8 ');
-  assert.equal(panorama.readUInt16LE(26)&0x3fff,ART_WIDTH*2);
-  assert.equal(panorama.readUInt16LE(28)&0x3fff,ART_HEIGHT*2);
+  assert.equal(panorama.toString('ascii',8,16),'WEBPVP8L');
+  assert.equal(panorama[20],0x2f);
+  const dimensions=panorama.readUInt32LE(21);
+  assert.equal(1+(dimensions&0x3fff),ART_WIDTH*2);
+  assert.equal(1+((dimensions>>>14)&0x3fff),ART_HEIGHT*2);
   assert.match(svg,/width="3966" height="1586" viewBox="0 0 1983 793"/);
   assert.ok(svg.includes(`data:image/webp;base64,${panorama.toString('base64')}`));
-  assert.match(svg,/id="nerd-code-symbol" aria-label="&lt;\/&gt;"/);
-  assert.match(svg,/M 10 10 L 4\.5 15\.5 L 10 21 M 19 7\.5 L 14 23\.5 M 23 10 L 28\.5 15\.5 L 23 21/);
+  assert.doesNotMatch(svg,/<(?:g|path|rect)\b/);
   assert.equal((svg.match(/<image /g)||[]).length,1);
  });
 }
@@ -40,4 +42,9 @@ test('the landing map, rooms, gallery, and highlights share the corrected artwor
  assert.ok(css.includes(`url('${NIGHT_ART}')`));
  assert.match(rooms,/import \{ ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART \}/);
  assert.match(world,/import \{ ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART, BUILDINGS \}/);
+ assert.ok(html.includes('./pixel-world.js?v=clean-signs-2'));
+ assert.ok(html.includes('./pixel.css?v=clean-signs-2'));
+ assert.ok(world.includes('./world-art.js?v=clean-signs-2'));
+ assert.ok(world.includes('./pixel-rooms.js?v=clean-signs-2'));
+ assert.ok(rooms.includes('./world-art.js?v=clean-signs-2'));
 });
