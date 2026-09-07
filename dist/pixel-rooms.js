@@ -1,4 +1,4 @@
-import { ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART } from './world-art.js?v=clean-signs-2';
+import { ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART } from './world-art.js?v=building-cards-1';
 import { setText, setAttributeText, localize } from './i18n.js';
 import { PALETTE,nextGeneration,seedPattern } from './pixel-core.js';
 import { BOOKS } from './books.js';
@@ -26,6 +26,18 @@ function resizePortrait(){
  const p=locations[current],el=document.getElementById('portrait-image'),frame=el.parentElement;
  const width=frame.clientWidth,height=frame.clientHeight;
  if(!width||!height)return;
+ if(p.cardArt){
+  const aspect=p.cardAspect||4/5;
+  const cardWidth=Math.min(width,height*aspect),cardHeight=cardWidth/aspect;
+  el.style.width=`${cardWidth}px`;
+  el.style.height=`${cardHeight}px`;
+  el.style.backgroundImage=`url("${p.cardArt}")`;
+  el.style.backgroundSize='100% 100%';
+  el.style.backgroundPosition='center';
+  setAttributeText(el,'aria-label','room.portrait',{name:p.name});
+  return;
+ }
+ el.style.removeProperty('background-image');
  // Keep the entire selected building inside its frame, including its sign.
  // The crop uses the same artwork coordinates in daylight and at night.
  const [x,y,w,h]=p.portraitRect||p.rect,padding=8;

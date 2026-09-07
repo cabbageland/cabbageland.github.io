@@ -3,6 +3,14 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { ART_WIDTH,ART_HEIGHT,DAY_ART,NIGHT_ART,BUILDINGS } from '../dist/world-art.js';
 
+const cardArtwork={
+ read:'./art/building-cards/escape-the-void.webp',
+ music:'./art/building-cards/compose-boredom.webp',
+ nerd:'./art/building-cards/nerds-farm.webp',
+ art:'./art/building-cards/my-world-in-xd.webp',
+ great:'./art/building-cards/the-great-cabbage.webp'
+};
+
 test('higher-resolution artwork preserves the existing map coordinates',()=>{
  assert.equal(ART_WIDTH,1983);
  assert.equal(ART_HEIGHT,793);
@@ -12,6 +20,18 @@ test('higher-resolution artwork preserves the existing map coordinates',()=>{
    assert.ok(left>=0&&top>=0&&left+width<=ART_WIDTH&&top+height<=ART_HEIGHT);
   }
  }
+});
+
+test('each supplied building card uses its dedicated optimized artwork',async()=>{
+ for(const [key,source] of Object.entries(cardArtwork)){
+  assert.equal(BUILDINGS[key].cardArt,source);
+  assert.equal(BUILDINGS[key].cardAspect,4/5);
+  const image=await readFile(new URL(`../dist/${source}`,import.meta.url));
+  assert.equal(image.toString('ascii',0,4),'RIFF');
+  assert.equal(image.toString('ascii',8,12),'WEBP');
+  assert.ok(image.length>50000&&image.length<200000);
+ }
+ assert.equal(BUILDINGS.pets.cardArt,undefined);
 });
 
 for(const [mode,source] of [['day',DAY_ART],['night',NIGHT_ART]]){
@@ -42,9 +62,9 @@ test('the landing map, rooms, gallery, and highlights share the corrected artwor
  assert.ok(css.includes(`url('${NIGHT_ART}')`));
  assert.match(rooms,/import \{ ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART \}/);
  assert.match(world,/import \{ ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART, BUILDINGS \}/);
- assert.ok(html.includes('./pixel-world.js?v=clean-signs-2'));
+ assert.ok(html.includes('./pixel-world.js?v=building-cards-1'));
  assert.ok(html.includes('./pixel.css?v=clean-signs-2'));
- assert.ok(world.includes('./world-art.js?v=clean-signs-2'));
- assert.ok(world.includes('./pixel-rooms.js?v=clean-signs-2'));
- assert.ok(rooms.includes('./world-art.js?v=clean-signs-2'));
+ assert.ok(world.includes('./world-art.js?v=building-cards-1'));
+ assert.ok(world.includes('./pixel-rooms.js?v=building-cards-1'));
+ assert.ok(rooms.includes('./world-art.js?v=building-cards-1'));
 });

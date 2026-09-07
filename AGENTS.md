@@ -10,6 +10,7 @@
 - Petting Zone labels the dinosaur and has a bottom navigation entry. The Great Cabbage is grandpa Tracy’s home. Both open introductions; the owner will supply the creature content and personal biography. Do not invent them.
 - Petting Zone and The Great Cabbage use floating text with outlines around the letters only. Keep backgrounds, boxes, sign borders, and pointer triangles off these labels.
 - Petting Zone lettering is smaller to reflect its distance. The Great Cabbage's room portrait includes the entire cabbage and waterfall with breathing room; use its dedicated portraitRect.
+- Use the dedicated optimized illustrations in `dist/art/building-cards/` for the room cards of escape-the-void, compose boredom, nerd’s farm, my-world-in-XD, and The Great Cabbage. Preserve their full-resolution originals in `source-art/building-cards/`. Petting Zone continues to use its panorama crop until the owner supplies a matching card.
 
 ## Required delivery workflow
 
