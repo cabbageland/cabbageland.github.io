@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { UI_ICONS,uiIcon } from '../dist/ui-icons.js';
 
 test('selected supplied UI icons are optimized local WebP assets with alpha',async()=>{
- assert.equal(Object.keys(UI_ICONS).length,2);
+ assert.equal(Object.keys(UI_ICONS).length,10);
  for(const [name,path] of Object.entries(UI_ICONS)){
   const data=await readFile(new URL(`../dist/${path}`,import.meta.url));
   assert.equal(data.toString('ascii',0,4),'RIFF',name);
@@ -27,8 +27,13 @@ test('icons are decorative, reserve their dimensions, and reject unknown names',
 
 test('localized tabs keep their icons outside translated text',async()=>{
  const rooms=await readFile(new URL('../dist/pixel-rooms.js',import.meta.url),'utf8');
+ const music=await readFile(new URL('../dist/music-room.js',import.meta.url),'utf8');
  for(const [source,id,key,icon] of [
-  [rooms,'reading-tab','reading.readTab','book-detailed']
+  [rooms,'reading-tab','reading.readTab','book'],
+  [rooms,'gallery-tab','art.galleryTab','palette'],
+  [rooms,'drawing-tab','art.drawingTab','brush'],
+  [music,'composer-tab','music.composeTab','music-note'],
+  [music,'songs-tab','music.songsTab','gramophone']
  ]){
   const button=source.match(new RegExp(`<button[^>]*id="${id}"[^>]*>[\\s\\S]*?</button>`))?.[0];
   assert.ok(button,`${id} exists`);

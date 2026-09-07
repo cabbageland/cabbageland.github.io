@@ -2,6 +2,7 @@ import { ARTIST_URL,ARTIST_NAME,SONGS } from './songs.js';
 import { localize,setText,setAttributeText } from './i18n.js';
 import { STEPS,HIGH_MIDI,PIANO_KEYS,noteName,frequency,rowFor,emptyScore,exampleScore,shuffleScore,readComposition,compositionData,renderSoundtrack } from './soundtrack.js';
 import { pianoKey,acceptsPianoInput,createNoteEntry } from './music-input.js';
+import { uiIcon } from './ui-icons.js?v=ui-icons-2';
 
 const STORAGE_KEY='cabbageland:pixel:soundtrack';
 export function createMusicRoom({content,audio,toast}){
@@ -92,7 +93,7 @@ export function createMusicRoom({content,audio,toast}){
  function mount(){
   mounted=true;
   content.innerHTML=`<span class="eyebrow" data-i18n="music.eyebrow"></span><h2 id="music-room-heading" data-i18n="music.title"></h2>
-  <div class="tabs music-tabs" role="tablist" data-i18n-aria-label="music.tabs"><button id="composer-tab" role="tab" aria-controls="composer-panel" aria-selected="true" data-music-tab="composer-panel" data-i18n="music.composeTab"></button><button id="songs-tab" role="tab" aria-controls="songs-panel" aria-selected="false" tabindex="-1" data-music-tab="songs-panel" data-i18n="music.songsTab"></button></div>
+  <div class="tabs music-tabs" role="tablist" data-i18n-aria-label="music.tabs"><button id="composer-tab" role="tab" aria-controls="composer-panel" aria-selected="true" data-music-tab="composer-panel">${uiIcon('music-note')}<span data-i18n="music.composeTab"></span></button><button id="songs-tab" role="tab" aria-controls="songs-panel" aria-selected="false" tabindex="-1" data-music-tab="songs-panel">${uiIcon('gramophone')}<span data-i18n="music.songsTab"></span></button></div>
   <div id="composer-panel" class="music-panel" role="tabpanel" aria-labelledby="composer-tab"><p class="intro" data-i18n="music.intro"></p>
   <div class="octave-controls"><button id="octave-down" class="pixel-button" data-i18n="music.lower"></button><output id="octave-value" aria-live="polite"></output><button id="octave-up" class="pixel-button" data-i18n="music.higher"></button></div>
   <div class="instrument"><div class="instrument-top"><span>CABBAGE-16</span><span class="music-status" data-i18n="music.ready"></span></div><div class="sequence-scroll"><div class="sequencer" id="sequence" role="group" data-i18n-aria-label="music.sequence"></div></div><div class="entry-guide"><output id="entry-status"></output><span data-i18n="music.entryHint"></span></div></div>
