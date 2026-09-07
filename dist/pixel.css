@@ -210,3 +210,12 @@ button.step-label{height:26px;line-height:24px;padding:0;border:1px solid transp
 button.step-label:hover,button.step-label:focus-visible{border-color:#e8d790;color:#fff0ad}
 button.step-label[aria-pressed=true]{background:#e8d790;color:#20351e;border-color:#f8ecc0;font-weight:600}
 @media(max-width:700px){.world-nav small{font-size:11px;overflow-wrap:anywhere}.intro-note{padding:18px;gap:12px}.entry-guide{font-size:11px}}
+
+/* Supplied pixel icons have real transparency; keep their colors in both themes. */
+.pixel-icon{display:inline-block;flex-shrink:0;object-fit:contain;vertical-align:middle;image-rendering:pixelated;pointer-events:none;user-select:none}
+.nav-symbol.pixel-icon{width:36px;height:36px}
+.tabs button{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.tabs .pixel-icon{width:24px;height:24px}
+.icon-heading{display:flex;align-items:center;gap:10px}
+.icon-heading .pixel-icon{width:32px;height:32px}
+@media(max-width:700px){.nav-symbol.pixel-icon{width:30px;height:30px}}

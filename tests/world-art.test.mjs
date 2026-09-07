@@ -62,9 +62,9 @@ test('the landing map, rooms, gallery, and highlights share the corrected artwor
  assert.ok(css.includes(`url('${NIGHT_ART}')`));
  assert.match(rooms,/import \{ ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART \}/);
  assert.match(world,/import \{ ART_WIDTH, ART_HEIGHT, DAY_ART, NIGHT_ART, BUILDINGS \}/);
- assert.ok(html.includes('./pixel-world.js?v=building-cards-1'));
- assert.ok(html.includes('./pixel.css?v=clean-signs-2'));
+ assert.ok(html.includes('./pixel-world.js?v=ui-icons-1'));
+ assert.ok(html.includes('./pixel.css?v=ui-icons-1'));
  assert.ok(world.includes('./world-art.js?v=building-cards-1'));
- assert.ok(world.includes('./pixel-rooms.js?v=building-cards-1'));
+ assert.ok(world.includes('./pixel-rooms.js?v=ui-icons-1'));
  assert.ok(rooms.includes('./world-art.js?v=building-cards-1'));
 });

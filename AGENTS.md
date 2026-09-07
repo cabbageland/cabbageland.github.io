@@ -11,6 +11,7 @@
 - Petting Zone and The Great Cabbage use floating text with outlines around the letters only. Keep backgrounds, boxes, sign borders, and pointer triangles off these labels.
 - Petting Zone lettering is smaller to reflect its distance. The Great Cabbage's room portrait includes the entire cabbage and waterfall with breathing room; use its dedicated portraitRect.
 - Use the dedicated optimized illustrations in `dist/art/building-cards/` for the room cards of escape-the-void, compose boredom, nerd’s farm, my-world-in-XD, and The Great Cabbage. Preserve their full-resolution originals in `source-art/building-cards/`. Petting Zone continues to use its panorama crop until the owner supplies a matching card.
+- Use the supplied transparent UI artwork in `dist/art/ui-icons/` for branding, navigation, and matching room controls. Preserve original uploads and placement notes in `source-art/ui-icons/`. Keep icons outside `data-i18n` text targets so language changes do not remove them. Do not replace map or building illustrations with UI icons.
 
 ## Required delivery workflow
 
