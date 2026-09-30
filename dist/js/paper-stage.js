@@ -230,6 +230,7 @@ export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = fal
   const shared = {};
   const loaded = {};
   let SP = null, tiles = null;
+  const complete = {}; // variants whose every layer has arrived (the base alone can land first on a slow network)
   const react = {}, kicks = {};
   const bursts = [];
   let introT0 = -1e9, hover = null, hoverAmt = {};
@@ -245,7 +246,7 @@ export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = fal
       CLOUDS.forEach((c) => { put(c.id, d + c.file); if (c.behind) put(c.id + '-behind', d + c.behind.file); });
     }
     PIECES.forEach((p) => put(p.id, d + p.file));
-    loaded[v] = Promise.all(jobs).catch((e) => { delete loaded[v]; throw e; });
+    loaded[v] = Promise.all(jobs).then(() => { complete[v] = true; if (v === variant) render(); }).catch((e) => { delete loaded[v]; throw e; });
     return loaded[v];
   }
   async function loadShared() {
@@ -810,7 +811,7 @@ export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = fal
   const loopTime = () => ((clock % L) + L) % L;
 
   function render(now = performance.now()) {
-    if (!target || !SP || !img[variant].base) return;
+    if (!target || !SP || !complete[variant]) return;
     const g = target.canvas.getContext('2d');
     const fi = Math.floor(loopTime() * FPS + 1e-6), tq = fi / FPS, f = fi % FRAMES;
     const tw = Math.floor(loopTime() * WFPS + 1e-6) / WFPS; // water moves on its own, finer clock
