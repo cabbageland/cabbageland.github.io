@@ -62,8 +62,8 @@
     { "id": "sprout-5", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [1050, 592, 134, 88] }, "pivot": [1117, 670] },
     { "id": "sprout-6", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [1168, 548, 124, 84] }, "pivot": [1229, 622] },
     { "id": "bird-sit", "kind": "bird", "kick": true, "cut": { "subject": [1068, 518, 88, 78] }, "pivot": [1106, 578] },
-    { "id": "farmer", "kind": "farmer", "spot": "farmer", "cut": { "subject": [798, 526, 128, 154], "minus": [[866, 618], [914, 618], [914, 672], [866, 672]] }, "pivot": [840, 664] },
-    { "id": "farmer-bucket", "kind": "bucket", "spot": "farmer", "parent": "farmer", "cut": { "subject": [798, 526, 128, 154], "within": [[866, 618], [914, 618], [914, 672], [866, 672]] }, "pivot": [883, 626] }
+    { "id": "farmer", "kind": "farmer", "spot": "farmer", "cut": { "subject": [798, 526, 128, 154], "minus": [[878, 630], [886, 628], [888, 624], [893, 622], [898, 629], [905, 634], [908, 648], [904, 669], [875, 669], [873, 652], [871, 640], [874, 633]] }, "pivot": [840, 664] },
+    { "id": "farmer-bucket", "kind": "bucket", "spot": "farmer", "parent": "farmer", "cut": { "subject": [798, 526, 128, 154], "within": [[878, 630], [886, 628], [888, 624], [893, 622], [898, 629], [905, 634], [908, 648], [904, 669], [875, 669], [873, 652], [871, 640], [874, 633]] }, "pivot": [883, 626] }
   ],
 
   "water": [
