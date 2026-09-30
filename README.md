@@ -1,20 +1,19 @@
 # Cabbageland
 
-A bilingual interactive pixel world for books, letters, music, experiments, and art.
+A bilingual paper-cut pop-up world for books, letters, music, experiments, and art. The wide day/night panorama is cut into paper pieces that move like stop-motion (12 fps idle, 24 fps reactions and water); clicking a place makes it bounce, scatter paper bits and play a small sound before its room opens.
 
 ## Project
 
-- `dist/` — the complete static website, including JavaScript, styles, and artwork. No build step or API key is required.
-- `dist/world-art.js` — day/night artwork paths and building coordinates.
-- `dist/art/panorama-*-clean-v2.webp` — final day/night artwork at 3966 × 1586, with the exact `</>` glyph and a clean artist-palette icon baked into the image pixels. The map, portraits, highlights, and gallery all use these versioned files, not runtime overlays. Logical coordinates remain 1983 × 793 so interactions stay aligned.
-- `dist/art/panorama-*-2x.webp` — retained enhanced source panoramas (2× upscaled from the image-generation output). The optional `node scripts/build-world-art.mjs` artwork-generation step requires Sharp 0.35.4. It preserves all pixels outside the two sign repairs, writes lossless final WebP files, and also updates the legacy self-contained SVG exports from those same corrected pixels. Install Sharp in the development environment to regenerate artwork; serving the committed static website still requires no dependencies or build step.
-- `dist/art/farmer-head-*.png` — original generated farmer repairs, retained alongside the original PNG panoramas. The enhanced artwork already includes the repaired face and hat; do not overlay the old repairs again.
-- `dist/art/building-cards/*.webp` — optimized 768 × 960 room-card illustrations for escape-the-void, compose boredom, nerd’s farm, my-world-in-XD, and The Great Cabbage. Full-resolution originals live in `source-art/building-cards/`; Petting Zone keeps its panorama crop until dedicated artwork is supplied.
-- `dist/art/ui-icons/` — ten supplied pixel-art icons with genuine transparency, optimized to 128 × 128 lossless WebP (about 118 KiB combined), plus a cabbage favicon. Original uploads, accepted PNG masters, and placement/edit notes live in `source-art/ui-icons/`. `scripts/prepare-ui-icons.mjs` validates alpha before mechanical export; text labels and keyboard behavior remain intact.
-- `dist/music-room.js`, `dist/music-input.js`, and `dist/soundtrack.js` — three-octave composer, keyboard recording, Shuffle, saved compositions, and WAV export.
-- `dist/songs.js` — verified public songs from [haru de’goat on Suno](https://suno.com/@harudegoat).
-- `dist/books.js` — the Reading corner's book links.
-- `dist/translations.js` — English and Chinese interface text. The landing page defaults to English; `?lang=zh` opens Chinese.
+- `dist/` — the complete static website. No build step or API key is needed to serve it.
+- `dist/index.html`, `dist/css/paper.css` — page shell and paper UI (day and night themes; the map fills the window between the header and footer).
+- `dist/js/paper-stage.js` — the cut-paper animation engine (Canvas 2D): pieces, water, drifting paper clouds, Cabbageclaw, bursts. `dist/js/world.js` — camera, hit testing, day/night, rooms and navigation. `dist/js/paper-sound.js` — click sounds and the music box.
+- `dist/world/scene.json` — everything that can be tuned: paper pieces and pivots, motions, click reactions, water, emitters, Cabbageclaw's path. `dist/world/rebuild.sh` regenerates `dist/world/layers/` from `dist/world/source/` (macOS: Swift, Vision, MetalFX; `cwebp` for WebP). See `dist/README.md`.
+- `dist/world/source/` — the day, signed-day and night panoramas (1983 × 793) and their AI-upscaled `hd/` copies (Real-ESRGAN x4plus, 3966 × 1586).
+- `dist/art/` — room cards, gallery images, icons and Cabbageclaw as WebP; originals in `dist/art/source/`. Older pixel-edition art (`dist/art/panorama-*`, `building-cards/`, `ui-icons/`, `farmer-head-*`) is kept for reference.
+- `dist/js/music-room.js`, `music-input.js`, `soundtrack.js` — three-octave composer, keyboard recording, Shuffle, saved compositions, and WAV export.
+- `dist/js/songs.js` — verified public songs from [haru de’goat on Suno](https://suno.com/@harudegoat).
+- `dist/js/books.js` — the Reading corner's book links.
+- `dist/js/translations.js` — English and Chinese interface text. The landing page defaults to English; `?lang=zh` opens Chinese.
 - `blender/` — original 3D source scene, render, and creation scripts, retained with the art assets.
 - `AGENTS.md` — project conventions and the owner's standing requirement to push every update to this repository.
 
@@ -26,7 +25,7 @@ Open compose boredom and use A W S E D F T G Y H U J to play and record notes. H
 
 ## Upcoming introductions
 
-The dinosaur's Petting Zone and The Great Cabbage (grandpa Tracy’s home) are interactive landmarks. Petting Zone also has a bottom navigation entry. Their bilingual introductory copy lives under `pets.*` and `great.*` in `dist/translations.js`; replace the coming-soon text when the owner supplies the creature descriptions and personal introduction.
+The dinosaur's Petting Zone and The Great Cabbage (grandpa Tracy’s home) are interactive landmarks. Petting Zone also has a bottom navigation entry. Their bilingual introductory copy lives under `pets.*` and `great.*` in `dist/js/translations.js`; replace the coming-soon text when the owner supplies the creature descriptions and personal introduction.
 
 ## GitHub Pages
 

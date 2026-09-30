@@ -1,2 +1,6 @@
 *.blend1
 *.blend2
+.DS_Store
+# paper edition build output and the local Real-ESRGAN binary (see dist/README.md)
+dist/world/.build/
+dist/world/.tools/

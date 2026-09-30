@@ -1,0 +1,171 @@
+{
+  "_readme": "Cabbageland paper world. Coordinates are in units of the 1983 × 793 panorama (x right, y down). Geometry (what is cut, where the water is) is measured on the day art and shared by every variant, so day and night pieces line up exactly. Edit, then run ./rebuild.sh; the site reads layers/layers.js. pieces are back-to-front. cut.subject = Vision subject-lift inside [x,y,w,h]; cut.within / cut.minus trim with a polygon; cut.polygon cuts by hand (dropSky keeps only the tree's own silhouette); cut.from takes the pixels from an extra source (the signs). keepUnder = leave the art under the piece instead of refilling it. pivot = hinge; parent = moves with another piece; spot = the place it belongs to (hover, click, room); kick = can be poked on its own.",
+  "units": [1983, 793],
+  "upscale": 2,
+  "upscaleSharpen": 0.35,
+  "out": "layers",
+  "variants": {
+    "day": { "source": "source/day.png", "clouds": false },
+    "night": { "source": "source/night.png", "fromTint": [0.46, 0.5, 0.74], "clouds": false }
+  },
+  "extraSources": { "signs": "source/day-signs.png" },
+
+  "cloudExclude": [
+    [[245, 0], [1720, 0], [1720, 60], [245, 60]],
+    [[1680, 0], [1812, 0], [1800, 45], [1680, 72]],
+    [[1636, 0], [1728, 0], [1728, 320], [1636, 320]]
+  ],
+  "clouds": [
+    { "id": "cloud-left", "rect": [0, 0, 245, 170], "amp": 12, "phase": 0, "track": "left" },
+    { "id": "cloud-right-mid", "rect": [1440, 58, 196, 130], "amp": 10, "phase": 1.7, "track": "both" },
+    { "id": "cloud-right", "rect": [1728, 0, 255, 110], "amp": 12, "phase": 3.1, "track": "right" }
+  ],
+
+  "pieces": [
+    { "id": "pine-l0", "kind": "pine", "kick": true, "cut": { "polygon": [[25, 66], [62, 262], [-8, 262]], "dropSky": true, "fill": "sky" }, "pivot": [27, 262] },
+    { "id": "pine-l1", "kind": "pine", "kick": true, "cut": { "polygon": [[156, -4], [232, 208], [80, 208]], "dropSky": true, "fill": "sky" }, "pivot": [156, 208] },
+    { "id": "pine-l2", "kind": "pine", "kick": true, "cut": { "polygon": [[240, 80], [272, 215], [208, 215]], "dropSky": true, "fill": "sky" }, "pivot": [240, 215] },
+    { "id": "pine-l3", "kind": "pine", "kick": true, "cut": { "polygon": [[435, 86], [480, 190], [396, 190]], "dropSky": true, "fill": "sky" }, "pivot": [438, 190] },
+    { "id": "pine-m1", "kind": "pine", "kick": true, "cut": { "polygon": [[512, 125], [550, 216], [476, 216]], "dropSky": true, "fill": "sky" }, "pivot": [512, 216] },
+    { "id": "pine-m2", "kind": "pine", "kick": true, "cut": { "polygon": [[564, 170], [590, 250], [538, 250]], "dropSky": true, "fill": "sky" }, "pivot": [564, 250] },
+    { "id": "pine-m5", "kind": "pine", "kick": true, "cut": { "polygon": [[795, 192], [818, 276], [770, 276]], "dropSky": true, "fill": "sky" }, "pivot": [795, 276] },
+    { "id": "pine-r1", "kind": "pine", "kick": true, "cut": { "polygon": [[1272, 196], [1298, 300], [1246, 300]], "dropSky": true, "fill": "sky" }, "pivot": [1272, 300] },
+    { "id": "pine-r2", "kind": "pine", "kick": true, "cut": { "polygon": [[1311, 187], [1341, 306], [1282, 306]], "dropSky": true, "fill": "sky" }, "pivot": [1311, 306] },
+    { "id": "pine-r3", "kind": "pine", "kick": true, "cut": { "polygon": [[1431, 174], [1463, 293], [1399, 293]], "dropSky": true, "fill": "sky" }, "pivot": [1431, 293] },
+    { "id": "pine-r4", "kind": "pine", "kick": true, "cut": { "polygon": [[1356, 248], [1385, 326], [1333, 326]], "dropSky": true, "fill": "sky" }, "pivot": [1357, 326] },
+    { "id": "pine-rr5", "kind": "pine", "kick": true, "cut": { "polygon": [[1522, 108], [1574, 218], [1470, 218]], "dropSky": true, "fill": "sky" }, "pivot": [1522, 218] },
+    { "id": "pine-rr6", "kind": "pine", "kick": true, "cut": { "polygon": [[1591, 128], [1626, 220], [1556, 220]], "dropSky": true, "fill": "sky" }, "pivot": [1591, 220] },
+    { "id": "pine-rr4", "kind": "pine", "kick": true, "cut": { "polygon": [[1776, 124], [1813, 250], [1739, 250]], "dropSky": true, "fill": "sky" }, "pivot": [1776, 250] },
+    { "id": "pine-rr2", "kind": "pine", "kick": true, "cut": { "polygon": [[1825, 94], [1865, 216], [1787, 216]], "dropSky": true, "fill": "sky" }, "pivot": [1826, 216] },
+    { "id": "pine-rr3", "kind": "pine", "kick": true, "cut": { "polygon": [[1883, 108], [1919, 214], [1849, 214]], "dropSky": true, "fill": "sky" }, "pivot": [1883, 214] },
+    { "id": "pine-rr1", "kind": "pine", "kick": true, "cut": { "polygon": [[1964, 38], [2012, 250], [1893, 250]], "dropSky": true, "fill": "sky" }, "pivot": [1960, 250] },
+
+    { "id": "bird-fly", "kind": "flyer", "kick": true, "cut": { "subject": [456, 50, 80, 82] }, "pivot": [496, 92] },
+    { "id": "cabbage", "kind": "cabbage", "spot": "great", "keepUnder": true, "cut": { "subject": [800, 4, 470, 292], "maxY": 300, "leavesBelow": 244 }, "pivot": [1030, 272] },
+    { "id": "dino-body", "kind": "dino", "spot": "pets", "cut": { "subject": [655, 228, 145, 112], "minus": [[664, 234], [714, 234], [724, 290], [708, 300], [690, 288], [664, 272]] }, "pivot": [735, 326] },
+    { "id": "dino-head", "kind": "head", "spot": "pets", "parent": "dino-body", "cut": { "subject": [655, 228, 145, 112], "within": [[664, 234], [714, 234], [724, 290], [708, 300], [690, 288], [664, 272]] }, "pivot": [710, 292] },
+
+    { "id": "hut", "kind": "building", "spot": "read", "keepUnder": true, "cut": { "subject": [300, 172, 312, 224] }, "pivot": [455, 390] },
+    { "id": "sign-void", "kind": "sign", "spot": "read", "parent": "hut", "keepUnder": true, "cut": { "polygon": [[374, 234], [522, 232], [523, 260], [375, 262]], "from": "signs" }, "pivot": [448, 234] },
+    { "id": "lab", "kind": "building", "spot": "nerd", "keepUnder": true, "cut": { "subject": [1148, 318, 334, 264] }, "pivot": [1312, 572] },
+    { "id": "sign-farm", "kind": "sign", "spot": "nerd", "parent": "lab", "keepUnder": true, "cut": { "polygon": [[1209, 386], [1367, 396], [1367, 433], [1209, 425]], "from": "signs" }, "pivot": [1288, 391] },
+    { "id": "greenhouse", "kind": "building", "spot": "art", "keepUnder": true, "cut": { "subject": [1388, 408, 424, 338] }, "pivot": [1600, 736] },
+    { "id": "sign-xd", "kind": "sign", "spot": "art", "parent": "greenhouse", "keepUnder": true, "cut": { "polygon": [[1461, 489], [1641, 502], [1641, 545], [1463, 532]], "from": "signs" }, "pivot": [1551, 496] },
+    { "id": "pavilion", "kind": "building", "spot": "music", "keepUnder": true, "cut": { "subject": [205, 396, 425, 300] }, "pivot": [420, 690] },
+    { "id": "gramo-horn", "kind": "horn", "spot": "music", "parent": "pavilion", "keepUnder": true, "cut": { "subject": [320, 465, 150, 170], "within": [[335, 466], [468, 466], [468, 570], [380, 580], [335, 575]] }, "pivot": [360, 572] },
+    { "id": "sign-boredom", "kind": "sign", "spot": "music", "parent": "pavilion", "keepUnder": true, "cut": { "polygon": [[321, 437], [514, 425], [517, 460], [323, 475]], "from": "signs" }, "pivot": [418, 431] },
+
+    { "id": "sprout-1", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [620, 404, 104, 68] }, "pivot": [672, 462] },
+    { "id": "sprout-2", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [712, 402, 104, 70] }, "pivot": [764, 462] },
+    { "id": "sprout-3", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [818, 404, 92, 66] }, "pivot": [864, 462] },
+    { "id": "sprout-4", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [932, 552, 124, 82] }, "pivot": [994, 624] },
+    { "id": "sprout-5", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [1050, 592, 134, 88] }, "pivot": [1117, 670] },
+    { "id": "sprout-6", "kind": "sprout", "kick": true, "keepUnder": true, "cut": { "subject": [1168, 548, 124, 84] }, "pivot": [1229, 622] },
+    { "id": "bird-sit", "kind": "bird", "kick": true, "cut": { "subject": [1068, 518, 88, 78] }, "pivot": [1106, 578] },
+    { "id": "farmer", "kind": "farmer", "spot": "farmer", "cut": { "subject": [798, 526, 128, 154], "minus": [[866, 618], [914, 618], [914, 672], [866, 672]] }, "pivot": [840, 664] },
+    { "id": "farmer-bucket", "kind": "bucket", "spot": "farmer", "parent": "farmer", "cut": { "subject": [798, 526, 128, 154], "within": [[866, 618], [914, 618], [914, 672], [866, 672]] }, "pivot": [883, 626] }
+  ],
+
+  "water": [
+    { "_readme": "Listed first wins where zones overlap. type falls = paper ribbons sliding down inside each fall's outline; type glints = short paper glints drifting along flow on flat water (speed in units/s, density per 1000 unit² of water, angle overrides the glint direction in degrees)." },
+    { "id": "falls", "type": "falls",
+      "_sheets": "one per fall: the four corners of its face (top-left, top-right, bottom-right, bottom-left, following the face even when it leans); streaks start short at the lip and speed up as they drop",
+      "speed": 60, "density": 0.42,
+      "sheets": [
+        { "id": "big-left", "quad": [[848, 266], [898, 263], [894, 390], [833, 388]] },
+        { "id": "big-mid-up", "quad": [[975, 250], [1036, 250], [1035, 327], [975, 328]] },
+        { "id": "big-mid-low", "quad": [[962, 331], [1047, 331], [1047, 410], [956, 410]] },
+        { "id": "big-right", "quad": [[1128, 266], [1186, 272], [1190, 392], [1147, 395]] },
+        { "id": "step", "quad": [[986, 472], [1109, 449], [1122, 498], [999, 521]] },
+        { "id": "small", "quad": [[689, 534], [786, 517], [801, 575], [704, 591]] },
+        { "id": "left-1", "quad": [[69, 222], [121, 222], [124, 283], [74, 283]] },
+        { "id": "left-2", "quad": [[101, 292], [186, 292], [197, 379], [117, 380]] },
+        { "id": "left-3", "quad": [[124, 384], [210, 384], [219, 462], [141, 464]] },
+        { "id": "right-top", "quad": [[1856, 265], [1928, 262], [1905, 345], [1847, 346]] },
+        { "id": "right-bridge", "quad": [[1786, 402], [1864, 402], [1858, 448], [1790, 448]] },
+        { "id": "right-low", "quad": [[1807, 494], [1880, 502], [1868, 538], [1795, 530]] }
+      ],
+      "zones": [
+        [[848, 266], [898, 263], [894, 390], [833, 388]],
+        [[975, 250], [1036, 250], [1035, 327], [975, 328]],
+        [[962, 331], [1047, 331], [1047, 410], [956, 410]],
+        [[1128, 266], [1186, 272], [1190, 392], [1147, 395]],
+        [[986, 472], [1109, 449], [1122, 498], [999, 521]],
+        [[689, 534], [786, 517], [801, 575], [704, 591]],
+        [[69, 222], [121, 222], [124, 283], [74, 283]],
+        [[101, 292], [186, 292], [197, 379], [117, 380]],
+        [[124, 384], [210, 384], [219, 462], [141, 464]],
+        [[1856, 265], [1928, 262], [1905, 345], [1847, 346]],
+        [[1786, 402], [1864, 402], [1858, 448], [1790, 448]],
+        [[1807, 494], [1880, 502], [1868, 538], [1795, 530]]
+      ] },
+    { "id": "upper-river", "type": "glints", "flow": [-0.985, -0.17], "speed": 11, "density": 1.6,
+      "zones": [[[630, 370], [1130, 378], [1130, 458], [1000, 458], [982, 452], [630, 422]]] },
+    { "id": "channel-a", "type": "glints", "flow": [0.965, 0.26], "speed": 12, "density": 1.8,
+      "zones": [[[588, 455], [800, 500], [800, 528], [684, 526], [588, 512]]] },
+    { "id": "channel-b", "type": "glints", "flow": [-1, 0.08], "speed": 12, "density": 1.8,
+      "zones": [[[770, 512], [1124, 506], [1124, 572], [770, 592]]] },
+    { "id": "lower-river", "type": "glints", "flow": [-0.32, 0.95], "speed": 13, "density": 1.4, "angle": -6,
+      "zones": [[[530, 586], [845, 560], [845, 793], [530, 793]]] }
+  ],
+
+  "emitters": [
+    { "type": "foam", "points": [[867, 388, 60], [1007, 426, 60], [1158, 388, 50], [140, 390, 90], [1890, 362, 80], [745, 582, 100], [1037, 528, 110]] },
+    { "type": "notes", "from": [470, 500], "dx": 150, "dy": -45 },
+    { "type": "stars", "from": [438, 330], "rise": 40, "spread": 50 },
+    { "type": "tags", "from": [1440, 440], "dx": 30, "dy": -80 },
+    { "type": "confetti", "from": [1650, 630], "rise": 60, "spread": 30 },
+    { "type": "screens", "rects": [[1243, 434, 44, 36], [1292, 434, 42, 36]] },
+    { "type": "leaves", "points": [[156, 60], [435, 120], [1272, 230], [1522, 150], [1825, 130], [1964, 100]] },
+    { "type": "butterflies", "paths": [[700, 440, 80, 30], [1000, 650, 90, 35], [330, 745, 90, 30], [1560, 752, 90, 30]], "variant": "day" },
+    { "type": "birds", "y": 150, "variant": "day" },
+    { "type": "skydrift", "variant": "day", "count": 5, "y": [18, 150], "speed": [4, 8], "scale": [0.7, 1.35] },
+    { "type": "fish", "jumps": [[3, 1, 660, 690, 610, 730, 46], [8.5, 0.9, 780, 452, 720, 470, 40]] },
+    { "type": "fireflies", "areas": [[250, 560, 420, 170], [880, 600, 380, 150], [1450, 650, 420, 110], [40, 400, 200, 200]], "count": 26, "variant": "night" },
+    { "type": "twinkle", "areas": [[0, 0, 245, 150], [1728, 0, 255, 100], [1440, 60, 190, 60], [600, 60, 180, 90], [1250, 60, 170, 90]], "count": 34, "variant": "night" },
+    { "type": "glow", "points": [[1523, 89, 90, 0.35], [440, 300, 80, 0.3], [1290, 455, 80, 0.3], [1580, 610, 120, 0.22], [360, 520, 70, 0.22]], "variant": "night" }
+  ],
+
+  "companion": {
+    "_readme": "path = points on the ground it walks over (out and back each 12 s loop); hops = indexes of path points it hops over; wave = seconds it stops to wave when clicked.",
+    "image": "../art/claw/cabbageclaw.webp", "height": 64, "spot": "claw", "wave": 2.6,
+    "path": [[926, 661], [958, 657], [990, 654], [1030, 668], [1075, 686], [1118, 703], [1175, 714], [1230, 708]], "hops": [2],
+    "motion": { "type": "jelly", "px": 14, "squash": 0.22, "hz": 4.6, "decay": 3.2, "air": 0.3, "anticipate": 0.1 }
+  },
+
+  "motions": {
+    "_readme": "Per piece kind. idle runs all the time (cycles = full swings per 12 s loop; keep them whole numbers so the loop is seamless); poke runs when the piece's spot is clicked (or the piece itself, if kick); hover = lift in units while the pointer is over its spot; intro = degrees of the settling wobble when the page opens. Types: rock {deg, cycles, phase, wave, spread}, bob {px, cycles}, tilt {from, to, cycles} or poke tilt {deg, time}, breathe {amount, cycles}, swing {deg, hz, decay, delay}, hop {px, time, count, falloff}, jelly {px, squash, hz, decay, air, anticipate}. groundShadow = [rx, ry] of the shadow drawn at the pivot while the piece is in the air.",
+    "pine": { "intro": 7, "idle": [{ "type": "rock", "deg": [1.6, 2.2, 2.8], "cycles": [2, 3], "wave": -0.004, "spread": 0.7 }], "poke": [{ "type": "swing", "deg": 10, "hz": 1.9, "decay": 2.6 }], "pokeBurst": { "sprite": "leaf", "count": 5 }, "pokeSound": ["flap"] },
+    "cabbage": { "intro": 2, "idle": [{ "type": "rock", "deg": 1, "cycles": 2 }, { "type": "bob", "px": 3, "cycles": 3 }], "poke": [{ "type": "jelly", "px": 12, "squash": 0.08, "hz": 3.2, "decay": 3.4, "air": 0.32 }], "hover": 4 },
+    "dino": { "intro": 6, "idle": [{ "type": "rock", "deg": 2, "cycles": 3 }, { "type": "breathe", "amount": 0.03, "cycles": 6 }], "poke": [{ "type": "jelly", "px": 10, "squash": 0.24, "hz": 4.4, "decay": 3.2, "air": 0.3, "anticipate": 0.12 }], "groundShadow": [46, 9], "hover": 3 },
+    "head": { "idle": [{ "type": "rock", "deg": 8, "cycles": 6, "phase": 1 }], "poke": [{ "type": "swing", "deg": 14, "hz": 3.6, "decay": 3, "delay": 0.14 }] },
+    "building": { "intro": 1.5, "idle": [], "poke": [{ "type": "jelly", "px": 7, "squash": 0.04, "hz": 3.6, "decay": 4, "air": 0.22, "anticipate": 0.06 }], "hover": 5 },
+    "sign": { "idle": [{ "type": "rock", "deg": 1.1, "cycles": 2, "wave": 0.01 }], "poke": [{ "type": "swing", "deg": 5, "hz": 2.1, "decay": 2.4, "delay": 0.1 }] },
+    "horn": { "idle": [{ "type": "rock", "deg": 3.5, "cycles": 16 }], "poke": [{ "type": "swing", "deg": 12, "hz": 2.2, "decay": 2.6 }] },
+    "sprout": { "intro": 3, "idle": [{ "type": "breathe", "amount": 0.025, "cycles": 3, "spread": 1.3 }], "poke": [{ "type": "jelly", "px": 6, "squash": 0.16, "hz": 4.2, "decay": 3.4, "air": 0.22 }], "pokeBurst": { "sprite": "leaf", "count": 6 }, "pokeSound": ["boing"] },
+    "bird": { "idle": [{ "type": "rock", "deg": 4, "cycles": 6 }], "poke": [{ "type": "hop", "px": 14, "time": 0.28, "count": 2, "falloff": 0.5 }], "pokeBurst": { "sprite": "heart", "count": 4 }, "pokeSound": ["chirp"], "groundShadow": [18, 4] },
+    "flyer": { "idle": [{ "type": "bob", "px": 8, "cycles": 4 }, { "type": "rock", "deg": 4, "cycles": 4, "phase": 1.2 }], "poke": [{ "type": "swing", "deg": 14, "hz": 2.6, "decay": 2.4 }], "pokeSound": ["chirp"] },
+    "farmer": { "intro": 3, "idle": [], "poke": [{ "type": "hop", "px": 9, "time": 0.3, "count": 3, "falloff": 0.6 }], "groundShadow": [24, 6], "hover": 3 },
+    "bucket": { "idle": [{ "type": "rock", "deg": 3, "cycles": 3 }], "poke": [{ "type": "swing", "deg": 18, "hz": 2.4, "decay": 2.6 }] }
+  },
+
+  "style": {
+    "fps": 12,
+    "actionFps": 24,
+    "paper": { "grain": 0.28, "rim": 0.42, "gloss": 0.55 },
+    "shadow": { "sprites": 0.22, "pieces": 0.24, "clouds": 0.15 },
+    "night": { "water": 0.45 },
+    "enterDelay": 0.42
+  },
+
+  "spots": [
+    { "id": "read", "burst": { "sprite": "star", "at": [438, 320], "count": 18 }, "sound": ["chime"] },
+    { "id": "music", "burst": { "sprite": "note", "at": [450, 490], "count": 10 }, "sound": ["run"] },
+    { "id": "nerd", "burst": { "sprite": "tag", "at": [1300, 430], "count": 10 }, "sound": ["blip"], "flashScreens": true },
+    { "id": "art", "burst": { "sprite": "paint", "at": [1650, 640], "count": 16 }, "sound": ["pop"] },
+    { "id": "pets", "burst": { "sprite": "heart", "at": [700, 240], "count": 8 }, "sound": ["jelly", "dino"] },
+    { "id": "great", "burst": { "sprite": "leaf", "at": [1030, 120], "count": 18 }, "sound": ["boing", "flap"] },
+    { "id": "farmer", "burst": { "sprite": "drop", "at": [885, 630], "count": 16 }, "sound": ["splash"] },
+    { "id": "claw", "burst": { "sprite": "heart", "at": [0, 0], "count": 6 }, "sound": ["jelly", "beep"] }
+  ]
+}

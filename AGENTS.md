@@ -2,16 +2,16 @@
 
 ## Established owner preferences
 
-- Keep the existing 2D pixel-art world, bilingual English/Chinese controls, English landing default, wide day/night art, and captions below the canvas.
+- Since 2026-09-30 the site is the paper-cut pop-up edition (the owner asked to adapt the pixel world to paper-cut style with click effects and animation). Keep its cut-paper look and stop-motion timing, bilingual English/Chinese controls, English landing default, and the wide day/night panorama filling the window between the header and footer.
 - Preserve all four buildings and their interactive rooms. The reading building and bottom navigation are named "escape-the-void" in both languages, matching the architecture. Keep Reading corner, Mailbox, and My notebook as its interior tabs in that order.
-- Keep generated day/night panoramas aligned with the building coordinates in `dist/world-art.js`.
-- The music pavilion includes a composer and the owner's personal songs from https://suno.com/@harudegoat. Use verified public song titles and links in `dist/songs.js`.
+- Keep the day/night panoramas aligned with each other and with `dist/world/scene.json`. Change pieces, motions, water and effects in `dist/world/scene.json` and run `dist/world/rebuild.sh`; never hand-edit `dist/world/layers/`.
+- The music pavilion includes a composer and the owner's personal songs from https://suno.com/@harudegoat. Use verified public song titles and links in `dist/js/songs.js`.
 - Piano keys record notes in the highlighted sequencer column; held keys form chords. Keep this working from the entire composer dialog, including its header.
 - Petting Zone labels the dinosaur and has a bottom navigation entry. The Great Cabbage is grandpa Tracy’s home. Both open introductions; the owner will supply the creature content and personal biography. Do not invent them.
 - Petting Zone and The Great Cabbage use floating text with outlines around the letters only. Keep backgrounds, boxes, sign borders, and pointer triangles off these labels.
-- Petting Zone lettering is smaller to reflect its distance. The Great Cabbage's room portrait includes the entire cabbage and waterfall with breathing room; use its dedicated portraitRect.
-- Use the dedicated optimized illustrations in `dist/art/building-cards/` for the room cards of escape-the-void, compose boredom, nerd’s farm, my-world-in-XD, and The Great Cabbage. Preserve their full-resolution originals in `source-art/building-cards/`. Petting Zone continues to use its panorama crop until the owner supplies a matching card.
-- Use the supplied transparent UI artwork in `dist/art/ui-icons/` for branding, navigation, and matching room controls. Preserve original uploads and placement notes in `source-art/ui-icons/`. Keep icons outside `data-i18n` text targets so language changes do not remove them. Do not replace map or building illustrations with UI icons.
+- Petting Zone lettering is smaller to reflect its distance. The Great Cabbage's room card is the owner's `the-great-cabbage-paper-scene-v1` illustration (the whole cabbage and waterfall).
+- Room cards live in `dist/art/cards/` (AI-upscaled WebP) with their originals in `dist/art/source/`; the building scenes come from the owner's paper art library (`04-building-scenes`).
+- Use the folded-paper icons in `dist/art/icons/` for branding, navigation, and matching room controls. Keep icons outside `data-i18n` text targets so language changes do not remove them. Do not replace map or building illustrations with UI icons.
 
 ## Required delivery workflow
 
