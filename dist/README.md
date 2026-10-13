@@ -57,6 +57,8 @@ world/layers/           生成的纸片（不要手改）
 
 **房间卡片和画廊图**：原图放在 `art/source/`，用 Real-ESRGAN 放大后压成 `art/cards/*.webp`、`art/gallery/*.webp`（`world/tools/mix-upscale.swift` 会把一点原图纸纹混回去）。
 
+**作品集（my-world-in-XD 的第一个标签页）**：作品清单在 `js/world-art.js` 的 `PORTFOLIO`，文字在 `js/translations.js` 的 `portfolio.<id>.*`（标题 title、媒介和年份 meta、描述 note、图片说明 alt，中英文都要有）。图片放 `art/portfolio/`：`<id>.webp` 是点开看的大图，`m/<id>.webp` 是房间里显示的尺寸，原图留在 `art/source/portfolio/`。`kind: 'set'` 是一组图共用一个标签（NeZha Collection），`kind: 'book'` 是可以翻页的小书（The Neurotic Cat），`chapters` 写每一章从第几页开始；翻书的代码在 `js/book.js`。描述都是 Tracy 自己写的，不要替她编。
+
 **改文字**：`js/translations.js`（中英文都要改）。Petting Zone 和 The Great Cabbage 的介绍还是占位文字，等你写好再换。
 
 ## 上线

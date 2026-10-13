@@ -290,6 +290,70 @@ button.step-label[aria-pressed=true] { background: #fbf2cf; color: #243a26; }
 .art-label { display: flex; align-items: baseline; justify-content: space-between; margin: 14px 2px; gap: 10px; }
 .art-label b { font-family: var(--display); font-size: 18px; font-weight: 700; }
 .art-label span { font-size: 13px; font-weight: 700; color: #6a7b55; }
+/* Tracy's portfolio: the gallery's frames, plus a note under the label, sets of pictures and a book */
+.portfolio .gallery-piece[style] .gallery-frame { max-width: min(100%, calc(var(--ratio) * 540px + 24px)); margin-inline: auto; }
+.piece-caption .art-label { margin-bottom: 6px; }
+.room-main .piece-note { margin: 0 2px 6px; max-width: 64ch; font-size: 15.5px; line-height: 1.85; }
+.gallery-set { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.gallery-set .gallery-frame { padding: 7px; }
+.gallery-piece .gallery-set .gallery-frame:nth-child(odd) { transform: rotate(-.7deg); }
+.gallery-piece .gallery-set .gallery-frame:nth-child(even) { transform: rotate(.6deg); }
+.book-cover { display: grid; grid-template-columns: 1fr 1fr; gap: 0; width: 100%; max-width: 560px; margin-inline: auto; cursor: pointer; transition: transform .15s; }
+.gallery-piece .book-cover:hover { transform: translateY(-3px) rotate(0); }
+.book-cover img + img { box-shadow: -1px 0 0 #e4dcc4, inset 8px 0 10px -8px rgba(52, 44, 24, .4); }
+.portfolio .action-row { margin: 8px 2px 0; }
+
+/* the book reader */
+.book-dialog { width: min(1500px, calc(100% - 28px)); max-width: none; height: calc(100dvh - 28px); max-height: none; padding: 0; overflow: hidden; border: 0; border-radius: 18px; color: #243a26; background: var(--grain), #f6efdb; box-shadow: 0 30px 70px -20px rgba(28, 34, 20, .6); }
+.book-dialog[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; animation: room-in .28s cubic-bezier(.2, .9, .3, 1.2); }
+.book-dialog::backdrop { background: rgba(38, 52, 30, .58); backdrop-filter: blur(3px); }
+body.night .book-dialog::backdrop { background: rgba(10, 16, 36, .68); }
+.book-top { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; padding: 10px 14px 10px 20px; background: var(--grain), #dde9b6; box-shadow: 0 5px 10px -7px rgba(52, 44, 24, .4); position: relative; z-index: 1; }
+.book-heading { min-width: 0; margin-right: auto; }
+.book-heading .eyebrow { display: block; line-height: 1.4; }
+.book-heading h2 { margin: 0; font-family: var(--display); font-size: clamp(20px, 2vw, 26px); font-weight: 700; line-height: 1.2; }
+.book-chapters, .book-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+.book-dialog [hidden] { display: none; }
+.book-top .paper-button { min-height: 36px; padding: 6px 12px; font-size: 14px; }
+.book-top .icon-button { width: 36px; min-width: 36px; padding: 0; font-size: 22px; }
+.book-chapters .paper-button[aria-pressed="true"] { background: var(--grain), #bcd982; transform: translateY(-1px) rotate(-.6deg); }
+.book-stage { display: flex; align-items: center; justify-content: center; gap: 14px; padding: 14px; min-height: 0; overflow: hidden; }
+.book-dialog.single .book-stage { align-items: flex-start; overflow: auto; overscroll-behavior: contain; }
+.book-turn { flex: none; width: 46px; height: 62px; border-radius: 12px; font-size: 34px; line-height: 1; color: #243a26; background: var(--grain), #fcf7e8; box-shadow: inset 0 1px 0 #fffdf5, 0 4px 10px -3px rgba(52, 44, 24, .3); }
+.book-turn:hover { transform: translateY(-1px); }
+.book-turn:disabled { opacity: .35; transform: none; }
+.book-dialog.single .book-turn { position: sticky; top: 42%; }
+.book-volume { position: relative; flex: none; display: grid; grid-template-columns: 1fr 1fr; perspective: 2400px; border-radius: 3px; background: #fffdf6; cursor: pointer; box-shadow: 0 1px 2px rgba(52, 44, 24, .2), 0 3px 0 #efe6cb, 0 6px 0 #e6dcbd, 0 26px 44px -18px rgba(52, 44, 24, .6); }
+.book-dialog.single .book-volume { grid-template-columns: 1fr; }
+.book-page, .book-leaf .face { position: relative; overflow: hidden; background: #fffdf6; }
+.book-page img, .book-leaf img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.book-page.blank img, .face.blank img { visibility: hidden; }
+.book-dialog.single .book-page.right { display: none; }
+/* the fold down the middle of an open book */
+.book-volume::after { content: ''; position: absolute; top: 0; bottom: 0; left: 50%; width: 46px; transform: translateX(-50%); pointer-events: none; z-index: 4; background: linear-gradient(90deg, transparent, rgba(52, 44, 24, .1) 42%, rgba(52, 44, 24, .2) 50%, rgba(52, 44, 24, .08) 58%, transparent); }
+.book-dialog.single .book-volume::after { display: none; }
+.book-leaf { position: absolute; top: 0; left: 50%; width: 50%; height: 100%; z-index: 3; transform-origin: left center; transform-style: preserve-3d; }
+.book-leaf .face { position: absolute; inset: 0; backface-visibility: hidden; box-shadow: 0 0 22px rgba(52, 44, 24, .25); }
+.book-leaf .back { transform: rotateY(180deg); }
+.book-leaf.turn { transition: transform .56s steps(9, end); }   /* a turn in nine paper steps */
+.book-volume.settle { animation: book-settle .26s steps(4); }
+@keyframes book-settle { from { transform: translateY(5px) rotate(.5deg); } to { transform: none; } }
+.book-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; padding: 9px 20px 11px; font-size: 13.5px; font-weight: 700; color: #566f4f; font-variant-numeric: tabular-nums; }
+.book-hint { font-weight: 600; }
+@media (max-width: 700px) {
+  .gallery-set { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .book-dialog { width: calc(100% - 12px); height: calc(100dvh - 12px); border-radius: 14px; }
+  .book-top { padding: 8px 10px; gap: 6px 10px; }
+  .book-heading .eyebrow { display: none; }
+  .book-heading { flex-basis: 100%; }
+  .book-chapters { gap: 4px; margin-right: auto; }
+  .book-top .book-chapters .paper-button { min-height: 34px; padding: 5px 8px; font-size: 13px; }
+  .book-stage { padding: 10px 6px; gap: 0; }
+  .book-dialog.single .book-turn { position: fixed; top: auto; bottom: 46px; z-index: 5; }
+  #book-prev { left: 14px; } #book-next { right: 14px; }
+  .book-hint { display: none; }
+}
+
 .drawing-board { background: var(--grain), #d9cda6; border-radius: 12px; padding: 10px; margin: 15px 0 16px; box-shadow: inset 0 1px 3px rgba(52, 44, 24, .25); }
 .drawing-board canvas { display: block; width: 100%; aspect-ratio: 4/3; touch-action: none; cursor: crosshair; border-radius: 6px; }
 .palette { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 15px; }
