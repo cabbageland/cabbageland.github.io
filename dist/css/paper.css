@@ -295,11 +295,9 @@ button.step-label[aria-pressed=true] { background: #fbf2cf; color: #243a26; }
 #portfolio-panel:not([hidden]) { flex: 1 1 0; min-height: 330px; display: flex; flex-direction: column; gap: 6px; margin-top: -10px; }
 /* the groups: little paper tabs above the wall */
 .wall-groups { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 6px; }
-.wall-group { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 11px 5px; border-radius: 9px; background: var(--grain), #fcf7e8; color: #3f5a33; font-size: 13.5px; font-weight: 800; line-height: 1.35; box-shadow: inset 0 1px 0 #fffdf5, 0 2px 5px -2px rgba(52, 44, 24, .35); transition: transform .12s, background-color .12s; }
-.wall-group small { font-size: 11.5px; font-weight: 700; color: #7c8a66; font-variant-numeric: tabular-nums; }
+.wall-group { display: inline-flex; align-items: baseline; padding: 4px 12px 5px; border-radius: 9px; background: var(--grain), #fcf7e8; color: #3f5a33; font-size: 13.5px; font-weight: 800; line-height: 1.35; box-shadow: inset 0 1px 0 #fffdf5, 0 2px 5px -2px rgba(52, 44, 24, .35); transition: transform .12s, background-color .12s; }
 .wall-group:hover { transform: translateY(-1px); }
 .wall-group[aria-pressed="true"] { background: var(--grain), #bcd982; color: #243a26; transform: rotate(-.8deg); }
-.wall-group[aria-pressed="true"] small { color: #4e6a3a; }
 .wall-box { flex: 1 1 0; min-height: 0; container-type: size; }
 /* Each row is a third of the panel's height, so exactly three rows show; frames keep a 3:2 shape (never wider than a third of the panel). */
 .gallery-wall {
