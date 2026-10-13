@@ -57,7 +57,9 @@ world/layers/           生成的纸片（不要手改）
 
 **房间卡片和画廊图**：原图放在 `art/source/`，用 Real-ESRGAN 放大后压成 `art/cards/*.webp`、`art/gallery/*.webp`（`world/tools/mix-upscale.swift` 会把一点原图纸纹混回去）。
 
-**作品集（my-world-in-XD 的第一个标签页）**：作品清单在 `js/world-art.js` 的 `PORTFOLIO`，文字在 `js/translations.js` 的 `portfolio.<id>.*`（标题 title、媒介和年份 meta、描述 note、图片说明 alt，中英文都要有）。图片放 `art/portfolio/`：`<id>.webp` 是点开看的大图，`m/<id>.webp` 是房间里显示的尺寸，原图留在 `art/source/portfolio/`。`kind: 'set'` 是一组图共用一个标签（NeZha Collection），`kind: 'book'` 是可以翻页的小书（The Neurotic Cat），`chapters` 写每一章从第几页开始；翻书的代码在 `js/book.js`。描述都是 Tracy 自己写的，不要替她编。
+**Tracy 的画廊（my-world-in-XD 的第一个标签页）**：一面小相框墙，一行 3 张，面板正好显示 3 行，其余的在面板里滚动；按年份从早到晚排，没有年份的排在最后。点一张会打开大图，旁边是标题、媒介和年份、描述（代码在 `js/viewer.js`）。作品清单在 `js/world-art.js` 的 `PORTFOLIO`（`year` 用来排序和显示小标签），文字在 `js/translations.js` 的 `portfolio.<id>.*`（标题 title、媒介和年份 meta、描述 note、图片说明 alt，中英文都要有）。图片放 `art/portfolio/`：`s/` 是墙上的小图，`m/` 和不带前缀的是大图的两种尺寸，原图留在 `art/source/portfolio/`。`kind: 'set'` 是一组图共用一个标签（NeZha Collection），`kind: 'book'` 是可以翻页的小书（The Neurotic Cat），`chapters` 写每一章从第几页开始；翻书的代码在 `js/book.js`。描述都是 Tracy 自己写的，不要替她编。第二个标签页「相册 / Album」是 Cabbageland 自己的图（`GALLERY`）。
+
+**白天和黑夜**：打开网站时按访客设备的时间决定，晚上 6 点到早上 6 点是夜晚；开着页面跨过 6 点会自己切换。顶栏的按钮仍然可以手动切，手动选过之后这次访问就不再自动切。时间在 `js/world.js` 的 `NIGHT_FROM` / `NIGHT_UNTIL`。
 
 **改文字**：`js/translations.js`（中英文都要改）。Petting Zone 和 The Great Cabbage 的介绍还是占位文字，等你写好再换。
 

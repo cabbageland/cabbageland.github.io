@@ -59,7 +59,12 @@ function resizeView(view, previous, next) {
   return constrainView({ s, x: next.width / 2 - cx * s, y: next.top + band(next) / 2 - cy * s }, next);
 }
 
-let s = 1, x = 0, y = 0, night = false, dragged = false, lastPointer = null, toastTimer, enterTimer;
+// Night follows the visitor's own clock: 6 pm to 6 am. The header button still switches by hand, and a hand-made choice
+// stays for the rest of the visit.
+const NIGHT_FROM = 18, NIGHT_UNTIL = 6;
+const nightByClock = () => { const h = new Date().getHours(); return h >= NIGHT_FROM || h < NIGHT_UNTIL; };
+let skyChosenByHand = false;
+let s = 1, x = 0, y = 0, night = nightByClock(), dragged = false, lastPointer = null, toastTimer, enterTimer;
 const pointers = new Map();
 let pinch = null, hintKey = null, hovered = null;
 
@@ -89,7 +94,7 @@ const audio = {
 const sfx = createPaperSound(audio);
 
 // ---------- the paper world ----------
-const paper = createPaperStage({ data: DATA, dir: LAYER_DIR, sfx, reduceMotion });
+const paper = createPaperStage({ data: DATA, dir: LAYER_DIR, sfx, reduceMotion, variant: night ? 'night' : 'day' });
 const ENTER_DELAY = (DATA.style?.enterDelay ?? 0.42) * 1000;
 let canvasScale = 0, canvasTimer = null;
 function wantedScale() { return Math.min(paper.layerScale, Math.max(0.5, Math.ceil(s * (window.devicePixelRatio || 1) * 4) / 4)); }
@@ -245,22 +250,32 @@ viewport.addEventListener('keydown', (e) => {
 });
 
 // ---------- controls ----------
-async function toggleNight() {
-  const button = document.getElementById('daynight'), nextNight = !night;
-  if (button.disabled) return;
+function showSky() {
+  const button = document.getElementById('daynight');
+  document.body.classList.toggle('night', night);
+  button.setAttribute('aria-pressed', String(night));
+  setAttributeText(button, 'aria-label', night ? 'world.toDay' : 'world.toNight');
+  document.getElementById('day-symbol').textContent = night ? '☾' : '☀';
+  setText(document.getElementById('day-text'), night ? 'world.night' : 'world.day');
+  setAttributeText(canvas, 'aria-label', night ? 'world.nightAlt' : 'world.dayAlt');
+}
+async function setNight(nextNight) {
+  const button = document.getElementById('daynight');
+  if (button.disabled || nextNight === night) return;
   button.disabled = true; button.setAttribute('aria-busy', 'true');
   try {
     if (nextNight) setText(document.getElementById('day-text'), 'world.nightLoading');
     await paper.setVariant(nextNight ? 'night' : 'day');
     night = nextNight;
-    document.body.classList.toggle('night', night);
-    button.setAttribute('aria-pressed', String(night));
-    setAttributeText(button, 'aria-label', night ? 'world.toDay' : 'world.toNight');
-    document.getElementById('day-symbol').textContent = night ? '☾' : '☀';
-    setAttributeText(canvas, 'aria-label', night ? 'world.nightAlt' : 'world.dayAlt');
   } catch { toast('world.nightError'); }
-  finally { setText(document.getElementById('day-text'), night ? 'world.night' : 'world.day'); button.disabled = false; button.removeAttribute('aria-busy'); }
+  finally { showSky(); button.disabled = false; button.removeAttribute('aria-busy'); }
 }
+function toggleNight() { skyChosenByHand = true; return setNight(!night); }
+// dusk and dawn arrive on their own while the page is open, unless the visitor picked a sky themselves
+function followClock() { if (!skyChosenByHand && !document.hidden && nightByClock() !== night) setNight(nightByClock()); }
+setInterval(followClock, 60 * 1000);
+document.addEventListener('visibilitychange', followClock);
+showSky();
 document.getElementById('home').onclick = () => { home(); locationHint(null); paper.replay(); };
 document.getElementById('fit-map').onclick = () => home();
 document.getElementById('zoom-in').onclick = () => zoom(1.2);
@@ -306,8 +321,8 @@ function ready() {
   home(); syncCanvas(true);
   paper.start();
   const l = document.getElementById('loading'); l.classList.add('ready'); setTimeout(() => l.remove(), 500);
-  // warm the night artwork once the day is on screen
-  setTimeout(() => paper.preload('night').catch(() => {}), 4000);
+  // warm the other sky's artwork once this one is on screen
+  setTimeout(() => paper.preload(night ? 'day' : 'night').catch(() => {}), 4000);
 }
 initLanguage();
 refreshWorldLanguage();

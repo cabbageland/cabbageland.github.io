@@ -206,7 +206,7 @@ function decodeHitmap(h) {
   return { ...h, cells };
 }
 
-export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = false }) {
+export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = false, variant: firstVariant = 'day' }) {
   const [W, H] = data.size;
   const LS = data.scale || 1;
   const STYLE = data.style || {};
@@ -265,7 +265,7 @@ export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = fal
     };
     WATER.forEach((w) => { if (w.type === 'glints') prepareGlints(w); else if (w.sheets) prepareSheets(w); else w.pattern = ctx.createPattern(tiles[w.tile === 'falls' ? 'falls' : 'river'], 'repeat'); });
   }
-  const ready = Promise.all([loadShared(), loadVariant('day')]);
+  const ready = Promise.all([loadShared(), loadVariant(firstVariant)]);
 
   // ---------- timing ----------
   const stepA = (ms) => Math.floor((ms / 1000) * AFPS) / AFPS; // reactions move on ones (24 fps)
@@ -806,7 +806,7 @@ export function createPaperStage({ data, dir, sfx = () => {}, reduceMotion = fal
 
   // ---------- public ----------
   let clock = 0, playing = !reduceMotion, lastNow = performance.now(), stepAcc = 0, lastKey = -1;
-  let variant = 'day', fade = null; // fade = {from, to, t0}
+  let variant = firstVariant, fade = null; // fade = {from, to, t0}
   let target = null; // {canvas, scale}
   const loopTime = () => ((clock % L) + L) % L;
 

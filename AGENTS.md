@@ -13,7 +13,8 @@
 - Room cards live in `dist/art/cards/` (AI-upscaled WebP) with their originals in `dist/art/source/`; the building scenes come from the owner's paper art library (`04-building-scenes`).
 - Use the folded-paper icons in `dist/art/icons/` for branding, navigation, and matching room controls. Keep icons outside `data-i18n` text targets so language changes do not remove them. Do not replace map or building illustrations with UI icons.
 
-- my-world-in-XD opens on Tracy’s portfolio (`PORTFOLIO` in `dist/js/world-art.js`), shown in the same paper frames and labels as the gallery tab. Titles, years, media and descriptions are the owner’s own words, collected work by work and translated into English; do not invent or embellish them, and leave untitled works untitled. The Neurotic Cat is a little book: keep it in the page-turning reader with Chapters 1–4. The owner chose to leave one digital painting (the figure in green water) out.
+- my-world-in-XD opens on “Tracy’s gallery” (`PORTFOLIO` in `dist/js/world-art.js`); the second tab is “Album” (Cabbageland’s own pictures), then the paper mosaic. The owner asked for the gallery to be space-efficient, not a long list: a wall of small frames, three to a row, sorted by year, in a panel three rows tall that scrolls, each opening large on click. Titles, years, media and descriptions are the owner’s own words, collected work by work and translated into English; do not invent or embellish them, and leave untitled works untitled. The Neurotic Cat is a little book the owner likes as it is: keep the page-turning reader with Chapters 1–4. The owner chose to leave one digital painting (the figure in green water) out.
+- Day and night follow the visitor’s device clock: night from 6 pm to 6 am. Keep the manual button working.
 
 ## Required delivery workflow
 
