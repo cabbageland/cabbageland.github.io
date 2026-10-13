@@ -2,10 +2,10 @@
 // A set shows its pictures one by one (little frames under the note switch between them); a book shows its cover and opens the reader.
 import { setText, setAttributeText } from './i18n.js';
 
-export function createViewer({ works, onBook }) {
+export function createViewer({ onBook }) {
   const $ = (id) => document.getElementById(id);
   const dialog = $('viewer'), art = $('viewer-art');
-  let at = 0, part = 0;   // which work, and which picture of a set
+  let works = [], at = 0, part = 0;   // the works being paged through, which one, and which picture of a set
 
   const key = (w) => `portfolio.${w.id}`;
   const file = (w, n) => (w.kind ? `${w.id}-${n + 1}` : w.id);
@@ -39,6 +39,7 @@ export function createViewer({ works, onBook }) {
     $('viewer-meta').hidden = !w.meta; if (w.meta) setText($('viewer-meta'), `${k}.meta`);
     $('viewer-note').hidden = !w.note; if (w.note) setText($('viewer-note'), `${k}.note`);
     setText($('viewer-count'), 'viewer.count', { n: at + 1, total: works.length });
+    $('viewer-prev').disabled = $('viewer-next').disabled = works.length < 2;
     $('viewer-book').hidden = w.kind !== 'book';
     const set = $('viewer-set'); set.hidden = w.kind !== 'set'; set.replaceChildren();
     if (w.kind === 'set') w.images.forEach((_, n) => {
@@ -51,7 +52,7 @@ export function createViewer({ works, onBook }) {
     showArt();
     dialog.querySelector('.viewer-caption').scrollTop = 0;
     const next = works[(at + 1) % works.length];   // have the next work ready
-    if (next.kind !== 'book') new Image().src = `./art/portfolio/m/${file(next, 0)}.webp`;
+    if (next !== w && next.kind !== 'book') new Image().src = `./art/portfolio/m/${file(next, 0)}.webp`;
   }
 
   $('viewer-prev').onclick = () => show(at - 1);
@@ -65,7 +66,9 @@ export function createViewer({ works, onBook }) {
   dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
 
   return {
-    open(i) {
+    // list = the works the wall is showing (all of them or one group), i = the one that was clicked
+    open(list, i) {
+      works = list;
       show(i);
       if (!dialog.open) dialog.showModal();
       $('viewer-next').focus({ preventScroll: true });
